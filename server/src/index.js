@@ -31,3 +31,4 @@ app.use(bodyParser.json());
 const api = 'api/v1'
 app.use(`/${api}`, require('./routers/usuarioRouter'))
 app.use(`/${api}`, require('./routers/loginRouter'))
+app.use(`/${api}`, require('./routers/enlacesRouter'))

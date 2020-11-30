@@ -1,8 +1,10 @@
 //CONFIGURACION PARA HEROKU
+
+
 //PUERTO DE SERVER
 process.env.PORT = process.env.PORT || 4000;
 
-//PUERTO DE DB DE MONGODB
+//SI ESTOY EN DEV O PRODUCCION
 process.env.NODE_ENV = process.env.NODE_ENV || "dev";
 
 
@@ -10,6 +12,8 @@ process.env.NODE_ENV = process.env.NODE_ENV || "dev";
 process.env.SECRET =  process.env.SECRET || "desarrollo"
 
 
+
+//PUERTO DE DB DE MONGODB
 let urlDB;
 
 if (process.env.NODE_ENV === "dev") {

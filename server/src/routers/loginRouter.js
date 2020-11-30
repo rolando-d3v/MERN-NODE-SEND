@@ -1,10 +1,9 @@
-const {Router} = require('express');
+const { Router } = require("express");
+// const { verificaToken } = require("../middlewares/auth");
 
-const router = Router()
-const {loginUser } = require('../controllers/loginController')
+const router = Router();
+const { loginUser } = require("../controllers/loginController");
 
-router.post('/login', loginUser)
-router.get('/login', )
+router.post("/login", loginUser);
 
-
-module.exports = router
+module.exports = router;
