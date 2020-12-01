@@ -29,7 +29,9 @@ exports.subirArchivo = async (req, res) => {
 };
 
 
-//_* REMOVE ARCHIVO 
+
+
+//_* REMOVE ARCHIVO  nota: se llama del router get enlace
 exports.eliminarArchivo = async (req, res) => {
   try {
     fs.unlinkSync(path.resolve(`./src/public/uploads/${req.archivo}`))
