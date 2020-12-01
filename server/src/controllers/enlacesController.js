@@ -33,3 +33,28 @@ exports.nuevoEnlace = async (req, res) => {
     res.json(err);
   }
 };
+
+
+//NUEVO ENLACE
+exports.obtenerEnlace = async (req, res) => {
+
+  const enlace = await enlaceModel.findOne({url: req.params.url})
+
+  if (!enlace) {
+    res.status(404).json({message: 'el enlace no existe'})
+  } else {
+    res.json({archivo: enlace.nombre});
+  }
+
+  //regula la cantidad de descargas
+  if (enlace.descargas ===1) {
+    console.log('hay uno');
+  } else {
+    enlace.descargas--
+    await enlace.save()
+    console.log('te quedan descargas');
+    
+  }
+
+    
+}
