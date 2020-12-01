@@ -13,6 +13,7 @@ exports.createdUsuario = async (req, res) => {
       email: req.body.email,
       password: await bcrypt.hash(req.body.password, 10),
       estado: req.body.estado,
+      role: req.body.role,
     });
     console.log(usuario);
     await usuario.save();

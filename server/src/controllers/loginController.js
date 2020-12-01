@@ -24,9 +24,10 @@ exports.loginUser = async (req, res, next) => {
         nombre: userEmail.nombre,
         email: userEmail.email,
         estado: userEmail.estado,
+        role: userEmail.role,
       },
       process.env.SECRET,
-      { expiresIn: 60 * 60 * 1 }
+      { expiresIn: 60 * 60 * 5 }
     );
 
     res.json({ ok: true, message: "login correcto", token });
