@@ -1,8 +1,9 @@
 const multer = require("multer");
 const path = require("path");
 const shortid = require("shortid");
+const fs = require("fs");
 
-//_*SUBIR ARCHIVOS
+//_* SUBIR ARCHIVOS
 exports.subirArchivo = async (req, res) => {
   //configuracion de multer
   const upload = multer({
@@ -22,14 +23,18 @@ exports.subirArchivo = async (req, res) => {
   ulploadx(req, res, async (error) => {
     console.log(req.file);
     if (!error) {
-        res.json({archivo: req.file.filename})
+      res.json({ archivo: req.file.filename });
     }
   });
 };
 
 
-
-
-
-
-exports.eliminarArchivo = async (req, res) => {};
+//_* REMOVE ARCHIVO 
+exports.eliminarArchivo = async (req, res) => {
+  try {
+    fs.unlinkSync(path.resolve(`./src/public/uploads/${req.archivo}`))
+    console.log("archivo eliminado");
+  } catch (err) {
+    console.log(err);
+  }
+};
