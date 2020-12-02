@@ -1,0 +1,54 @@
+@tailwind base;
+/* estilos base (aplicados a los elementos) */
+
+
+
+/* aquí van nuestras clases de componentes(extraidos, podemos usar @apply para aplicar estilos de tailwind */
+@tailwind components;
+
+
+/* FORMULARIO <!-- component --------------------------------------------------------------------------------------> */
+
+.input_x {
+  @apply bg-gray-200 px-4 py-2 w-full pr-16 rounded-xl 
+}
+.input_x:focus {
+  @apply outline-none 
+} 
+
+
+.btn {
+  @apply bg-blue-400 font-bold py-2 px-4 rounded-full;
+}
+.btn:focus {
+  @apply outline-none;
+}
+
+
+.select_form {
+  @apply block appearance-none text-gray-600 w-full bg-white border border-gray-400 shadow-inner px-4 py-2 pr-8 rounded-lg 
+}
+
+
+/* <!-- LINK  NAV PARA NAVIGATION --> */
+.nav_link {
+  @apply flex items-center no-underline py-2;
+}
+
+/*  <!-- component CARD --> */
+.card {
+  @apply p-4 flex flex-wrap;
+}
+
+/*  <!-- component CONTAINER --> */
+.container_x {
+ @apply mx-auto w-full px-4;
+}
+
+
+
+/* nuestras utilidades extra */
+
+
+@tailwind utilities;
+
