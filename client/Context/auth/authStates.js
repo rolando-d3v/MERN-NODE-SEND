@@ -1,12 +1,13 @@
 import { useReducer } from "react";
 import AuthContext from "./authContext";
 import { authReducer } from "./authReducer";
+import clienteAxios from "../../config/clienteAxios";
 import { USUARIO_AUTENTICADO } from "./types";
 
 const AuthStates = (props) => {
   //DEFINIR EL SATATE INICIAL
   const initialState = {
-    token: "",
+    token: "rolando R",
     autenticado: null,
     usuario: null,
     message: null,
@@ -16,16 +17,15 @@ const AuthStates = (props) => {
   const [state, dispath] = useReducer(authReducer, initialState);
 
 
-
-
   //registrar nuevo usuario
-  const registrarUsuario = (datos) => {
-    console.log('desde registro');
-    console.log(datos);
-    // dispath({
-    //   type: USUARIO_AUTENTICADO,
-    //   payload: nombre,
-    // });
+  const registrarUsuario = async (datos) => {
+    try {
+      const result = await clienteAxios.post("/usuario", datos);
+    //   console.log("desde registro");
+      console.log(result);
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   const usuarioAuthorization = (nombre) => {
