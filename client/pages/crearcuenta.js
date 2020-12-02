@@ -1,10 +1,10 @@
 import LayoutBase from "../components/layout/LayoutBase";
 
-export default function Index() {
+export default function CrearCuenta() {
   return (
     <LayoutBase>
-      <div className="" >
-        <h1>index</h1>
+      <div className="">
+        <h3>cuenta</h3>
       </div>
     </LayoutBase>
   );
