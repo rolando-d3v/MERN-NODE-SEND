@@ -28,9 +28,7 @@ export default function Index() {
     <LayoutBase>
       <div className="" >
         <h1>index</h1>
-        <h1>index</h1>
-        <h1>index</h1>
-        <h1>index</h1>
+     
       </div>
     </LayoutBase>
   );
