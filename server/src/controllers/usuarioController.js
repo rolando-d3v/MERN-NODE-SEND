@@ -20,7 +20,7 @@ exports.createdUsuario = async (req, res) => {
     res.json({ message: "user created successfully" });
   } catch (err) {
     if (err.code === 11000) {
-      res.json({ message: "el email ya registrado", err });
+      res.status(400).json({ message: "el email ya registrado", err });
     }
     console.log(err);
   }

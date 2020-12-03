@@ -8,17 +8,17 @@ exports.loginUser = async (req, res, next) => {
 
     const userEmail = await usuarioModel.findOne({ email: email });
     if (!userEmail) {
-      res.json({ message: "email no valido" });
+      res.status(400).json({ message: "email incorrecto" });
       next();
     }
 
     const userPassword = await bcrypt.compare(password, userEmail.password);
     if (!userPassword) {
-      res.json({ ok: false, message: "password incorrecto" });
+      res.status(400).json({ ok: false, message: "password incorrecto" });
       next();
     }
 
-    const token = await jwt.sign(
+    const token =  jwt.sign(
       {
         id: userEmail._id,
         nombre: userEmail.nombre,
@@ -36,3 +36,9 @@ exports.loginUser = async (req, res, next) => {
     next();
   }
 };
+
+
+//ENDPOIN DEVULEVE LOS DATOS DECODIFICADOS DEL TOKEN
+exports.usuarioAutenticado = (req, res, next) => {
+  res.json({usuario: req.usuario } );
+}

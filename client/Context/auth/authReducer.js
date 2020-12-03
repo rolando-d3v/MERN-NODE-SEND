@@ -1,12 +1,16 @@
-import { USUARIO_AUTENTICADO } from "./types";
+import { LOGIN_TOKEN } from "./types";
 
 export const authReducer = (state, action) => {
   switch (action.type) {
-    case USUARIO_AUTENTICADO:
+      
+    case LOGIN_TOKEN:
+        localStorage.setItem('token_x', action.payload )
       return {
-        ...state,
-        usuario: action.payload,
+          ...state,
+          token: action.payload,
+          autenticado: true
       };
+
     default:
       return state;
   }

@@ -1,10 +1,24 @@
+import { useEffect } from "react";
 import LayoutBase from "../components/layout/LayoutBase";
+import { useRouter } from "next/router";
+import useAuth from "../hooks/useAuth";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { MdEmail } from "react-icons/md";
 import * as FaIcons from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 export default function Login() {
+  const { iniciarSesion, autenticado } = useAuth();
+  const router = useRouter();
+
+ 
+  useEffect(() => {
+    if (autenticado) {
+      router.push("/");
+    }
+  }, [autenticado]);
+
+  //FORMULARIO FORMIK
   const formik = useFormik({
     initialValues: {
       nombre: "",
@@ -17,7 +31,7 @@ export default function Login() {
       password: Yup.string().required("password obligatorio"),
     }),
     onSubmit: (formData) => {
-      console.log(formData);
+      iniciarSesion(formData);
     },
   });
 
