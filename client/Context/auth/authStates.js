@@ -2,14 +2,14 @@ import { useReducer } from "react";
 import { authReducer } from "./authReducer";
 import AuthContext from "./authContext";
 import clienteAxios from "../../config/clienteAxios";
-import { LOGIN_TOKEN } from "./types";
+import { LOGIN_TOKEN, USUARIO_AUTENTICADO, CERRAR_SESION } from "./types";
 import { useViewAlert } from "../../hooks/useAlert";
-import tokenAuth from '../../config/tokenAuth'
+import tokenAuth from "../../config/tokenAuth";
 
 const AuthStates = (props) => {
   //DEFINIR EL SATATE INICIAL
   const initialState = {
-    token: typeof window !== "undefined" ? localStorage.getItem("token_x") : "",     // es difernte pork es en next corre en node y web
+    token: typeof window !== "undefined" ? localStorage.getItem("token_x") : "", // es difernte pork es en next corre en node y web
     autenticado: null,
     usuario: null,
     message: null,
@@ -51,29 +51,28 @@ const AuthStates = (props) => {
 
   //-- autenticar si existe el usuario
   const usuarioAutenticado = async () => {
-
-    const token = localStorage.getItem('token_x')
-    console.log(token);
+    const token = localStorage.getItem("token_x");
     if (token) {
-        tokenAuth(token)
-    }
-
-    try {
-        const result = await clienteAxios.get('/login')
-        console.log(result.data);
-    } catch (err) {
+      tokenAuth(token);
+      try {
+        const result = await clienteAxios.get("/login");
+        dispath({
+          type: USUARIO_AUTENTICADO,
+          payload: result.data.usuario,
+        });
+      } catch (err) {
         console.log(err);
+      }
     }
 
-   
-    // dispath({
-    //   type: USUARIO_AUTENTICADO,
-    //   payload: nombre,
-    // });
   };
 
 
-
+  const cerrarSesion = () => {
+    dispath({
+      type: CERRAR_SESION,
+    })
+  }
 
   return (
     <AuthContext.Provider
@@ -85,6 +84,7 @@ const AuthStates = (props) => {
         usuarioAutenticado,
         registrarUsuario,
         iniciarSesion,
+        cerrarSesion,
       }}
     >
       {props.children}
