@@ -34,7 +34,17 @@ export const useViewAlert = (message, icono) => {
       // iconColor: '#000',
       grow: false,
     });
-  }
+  } else if (icono === "warning") {
+    Toast.fire({
+      icon: "warning",
+      title: "Warning",
+      text: message,
+      background: "#fbbc50",
+      iconColor: "#000",
+      // iconColor: '#000',
+      grow: false,
+    });
+  } 
 };
 
 
