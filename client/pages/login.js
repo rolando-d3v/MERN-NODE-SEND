@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import LayoutBase from "../components/layout/LayoutBase";
 import { useRouter } from "next/router";
-import useAuth from "../hooks/useAuth";
+// import useAuth from "../hooks/useAuth";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import * as FaIcons from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import AuthContext from '../Context/auth/authContext'
 
 export default function Login() {
-  const { iniciarSesion, autenticado } = useAuth();
+  const {iniciarSesion, autenticado} = useContext(AuthContext)
+  // const { iniciarSesion, autenticado } = useAuth();
   const router = useRouter();
 
  
