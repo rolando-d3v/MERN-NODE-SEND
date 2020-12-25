@@ -1,6 +1,11 @@
 //CONFIGURACION PARA HEROKU
 
 
+//URL DE FRONTEND PARA PEDIR DATOS
+process.env.FRONTEND_URL = 'http://localhost:3000'
+
+
+
 //PUERTO DE SERVER
 process.env.PORT = process.env.PORT || 4000;
 

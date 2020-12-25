@@ -1,4 +1,4 @@
-const enlaceModel = require("../models/enlacesModel");
+const enlaceModel = require("./enlacesModel");
 const shortid = require("shortid");
 const bcrypt = require("bcrypt");
 

@@ -9,7 +9,7 @@ exports.subirArchivo = async (req, res) => {
   const upload = multer({
     limits: { fileSize: req.usuario ? 1000 * 9000 : 1000 * 2000 },
     storage: multer.diskStorage({
-      destination: path.join(__dirname, "../public/uploads"),
+      destination: path.join(__dirname, "../../public/uploads"),
       filename: (req, file, cb) => {
         let extension = path.extname(file.originalname).toLocaleLowerCase();
         cb(null, "File-" + shortid.generate() + extension);

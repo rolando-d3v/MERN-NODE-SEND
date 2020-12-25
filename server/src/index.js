@@ -18,8 +18,13 @@ app.listen(port, () => {
 const conectarDB = require("./db");
 conectarDB();
 
+//CORS PARA QUE SOLO ENTRE DE ESA URL CONFIG
+const opcionesCors = {
+  origin: process.env.FRONTEND_URL
+}
+app.use(cors(opcionesCors));
+
 // MIDDLEWARES DE LIBRERIAS
-app.use(cors());
 app.use(morgan("dev"));
 
 // PARA HACER PRUEBAS CON EL POTSMAN
@@ -29,7 +34,7 @@ app.use(bodyParser.json());
 
 //ROUTERS
 const api = 'api/v1'
-app.use(`/${api}`, require('./routers/usuarioRouter'))
-app.use(`/${api}`, require('./routers/loginRouter'))
-app.use(`/${api}`, require('./routers/enlacesRouter'))
-app.use(`/${api}`, require('./routers/uploadRouter'))
+app.use(`/${api}`, require('./api/login/loginRouter'))
+app.use(`/${api}`, require('./api/usuarios/usuarioRouter'))
+app.use(`/${api}`, require('./api/enlaces/enlacesRouter'))
+app.use(`/${api}`, require('./api/upload/uploadRouter'))

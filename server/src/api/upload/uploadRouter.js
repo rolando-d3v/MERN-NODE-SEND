@@ -1,10 +1,10 @@
 const {Router} = require('express');
 
 
-const {verificaToken} = require('../middlewares/auth')
+const {verificaToken} = require('../../middlewares/auth')
 
 const router = Router()
-const {subirArchivo } = require('../controllers/uploadController')
+const {subirArchivo } = require('./uploadController')
 
 router.post('/upload',verificaToken, subirArchivo )
 

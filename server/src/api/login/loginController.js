@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const usuarioModel = require("../models/usuarioModel");
+const usuarioModel = require("../usuarios/usuarioModel");
 
 exports.loginUser = async (req, res, next) => {
   try {
@@ -27,7 +27,7 @@ exports.loginUser = async (req, res, next) => {
         role: userEmail.role,
       },
       process.env.SECRET,
-      { expiresIn: 60 * 60 * 5 }
+      { expiresIn: 60 * 60 * 1 }
     );
 
     res.json({ ok: true, message: "login correcto", token });

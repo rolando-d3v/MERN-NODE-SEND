@@ -7,7 +7,8 @@ import { useViewAlert } from "../../hooks/useAlert";
 import tokenAuth from "../../config/tokenAuth";
 
 const AuthStates = (props) => {
-  //DEFINIR EL SATATE INICIAL
+
+  //EL SATATE INICIAL
   const initialState = {
     token: typeof window !== "undefined" ? localStorage.getItem("token_x") : "", // es difernte pork es en next corre en node y web
     autenticado: null,
@@ -18,7 +19,7 @@ const AuthStates = (props) => {
   // DEFINIR EL REDUCER
   const [state, dispath] = useReducer(authReducer, initialState);
 
-  //--registrar nuevo usuario
+  //*_registrar nuevo usuario
   const registrarUsuario = async (datos) => {
     try {
       const result = await clienteAxios.post("/usuario", datos);
@@ -27,7 +28,6 @@ const AuthStates = (props) => {
       }
     } catch (error) {
       useViewAlert(error.response.data.message, "error");
-      console.log(error.response.data);
     }
   };
 

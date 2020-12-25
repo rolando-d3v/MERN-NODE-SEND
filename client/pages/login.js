@@ -33,7 +33,7 @@ export default function Login() {
       password: Yup.string().required("password obligatorio"),
     }),
     onSubmit: (formData) => {
-      console.log(formData);
+      // console.log(formData);
       iniciarSesion(formData);
     },
   });

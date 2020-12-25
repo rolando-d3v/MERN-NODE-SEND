@@ -11,7 +11,6 @@ import * as FaIcons from "react-icons/fa";
 export default function CrearCuenta() {
 
   const { registrarUsuario } = useContext(AuthContext);
-
   // const {registrarUsuario} = useAuth()
 
 
