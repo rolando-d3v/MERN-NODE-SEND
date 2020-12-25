@@ -9,20 +9,22 @@ require("dotenv").config();
 //SERVER APP
 const app = express();
 const port = process.env.PORT;
-
 app.listen(port, () => {
   console.log("server listen in  port " + port);
 });
 
+
 //SERVER DB
 const conectarDB = require("./db");
 conectarDB();
+
 
 //CORS PARA QUE SOLO ENTRE DE ESA URL CONFIG
 const opcionesCors = {
   origin: process.env.FRONTEND_URL
 }
 app.use(cors(opcionesCors));
+
 
 // MIDDLEWARES DE LIBRERIAS
 app.use(morgan("dev"));
@@ -33,8 +35,8 @@ app.use(bodyParser.json());
 
 
 //ROUTERS
-const api = 'api/v1'
-app.use(`/${api}`, require('./api/login/loginRouter'))
-app.use(`/${api}`, require('./api/usuarios/usuarioRouter'))
-app.use(`/${api}`, require('./api/enlaces/enlacesRouter'))
-app.use(`/${api}`, require('./api/upload/uploadRouter'))
+// const api = 'api/v1'
+app.use(`/`, require('./api/login/loginRouter'))
+app.use(`/`, require('./api/usuarios/usuarioRouter'))
+app.use(`/`, require('./api/enlaces/enlacesRouter'))
+app.use(`/`, require('./api/upload/uploadRouter'))
