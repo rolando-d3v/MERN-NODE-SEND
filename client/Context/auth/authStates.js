@@ -35,11 +35,11 @@ const AuthStates = (props) => {
     try {
       const result = await clienteAxios.post("/login", datos);
       // if (result) {
-        useViewAlert(result.data.message, "success");
-        dispath({
-          type: LOGIN_TOKEN,
-          payload: result.data.token,
-        });
+      useViewAlert(result.data.message, "success");
+      dispath({
+        type: LOGIN_TOKEN,
+        payload: result.data.token,
+      });
       // }
     } catch (err) {
       if (err.response) {
@@ -54,7 +54,6 @@ const AuthStates = (props) => {
     if (token) {
       // tokenAuth obtiene token con axios del Auth
       tokenAuth(token);
-
       try {
         const result = await clienteAxios.get("/login");
         if (result.data.usuario) {
