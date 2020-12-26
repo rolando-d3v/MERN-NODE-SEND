@@ -1,7 +1,5 @@
 import { useContext } from "react";
-import AuthContext from "../Context/auth/authContext";
-
-// import useAuth from '../hooks/useAuth'
+import authContext from "../Context/auth/authContext";
 import LayoutBase from "../components/layout/LayoutBase";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -10,10 +8,8 @@ import * as FaIcons from "react-icons/fa";
 
 export default function CrearCuenta() {
 
-  const { registrarUsuario } = useContext(AuthContext);
-  // const {registrarUsuario} = useAuth()
-
-
+  const { registrarUsuario } = useContext(authContext);
+ 
   const formik = useFormik({
     initialValues: {
       nombre: "",

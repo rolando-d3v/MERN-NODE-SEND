@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import useAuth from "../../hooks/useAuth";
+import React, { useEffect, useContext } from "react";
+import authContext from '../../Context/auth/authContext'
 import Link from "next/link";
 
 export default function Header() {
-  const { usuario, usuarioAutenticado, cerrarSesion } = useAuth();
+ 
+  const { usuario, usuarioAutenticado, cerrarSesion } = useContext(authContext);
 
   useEffect(() => {
     usuarioAutenticado();
@@ -20,12 +21,11 @@ export default function Header() {
       {usuario ? (
         <div>
           <h3>hola Rolando {usuario.nombre} </h3>
-          <button
+          <button type='button'
             className="btn text-white  bg-azul-800"
             onClick={()=> cerrarSesion() }
           >
-          
-            cerrarSesion{" "}
+            cerrar Sesion
           </button>
         </div>
       ) : (

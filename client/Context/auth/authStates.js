@@ -1,13 +1,12 @@
 import { useReducer } from "react";
 import { authReducer } from "./authReducer";
-import AuthContext from "./authContext";
+import authContext from "./authContext";
 import clienteAxios from "../../config/clienteAxios";
 import { LOGIN_TOKEN, USUARIO_AUTENTICADO, CERRAR_SESION } from "./types";
 import { useViewAlert } from "../../hooks/useAlert";
 import tokenAuth from "../../config/tokenAuth";
 
 const AuthStates = (props) => {
-
   //EL SATATE INICIAL
   const initialState = {
     token: typeof window !== "undefined" ? localStorage.getItem("token_x") : "", // es difernte pork es en next corre en node y web
@@ -35,13 +34,13 @@ const AuthStates = (props) => {
   const iniciarSesion = async (datos) => {
     try {
       const result = await clienteAxios.post("/login", datos);
-      if (result) {
+      // if (result) {
         useViewAlert(result.data.message, "success");
         dispath({
           type: LOGIN_TOKEN,
           payload: result.data.token,
         });
-      }
+      // }
     } catch (err) {
       if (err.response) {
         useViewAlert(err.response.data.message, "error");
@@ -53,42 +52,45 @@ const AuthStates = (props) => {
   const usuarioAutenticado = async () => {
     const token = localStorage.getItem("token_x");
     if (token) {
+      // tokenAuth obtiene token con axios del Auth
       tokenAuth(token);
+
       try {
         const result = await clienteAxios.get("/login");
-        dispath({
-          type: USUARIO_AUTENTICADO,
-          payload: result.data.usuario,
-        });
+        if (result.data.usuario) {
+          dispath({
+            type: USUARIO_AUTENTICADO,
+            payload: result.data.usuario,
+          });
+        }
       } catch (err) {
         console.log(err);
       }
     }
-
   };
 
-
+  //CERRAR SE SION
   const cerrarSesion = () => {
     dispath({
       type: CERRAR_SESION,
-    })
-  }
+    });
+  };
 
   return (
-    <AuthContext.Provider
+    <authContext.Provider
       value={{
         token: state.token,
         autenticado: state.autenticado,
         usuario: state.usuario,
         message: state.message,
-        usuarioAutenticado,
         registrarUsuario,
         iniciarSesion,
         cerrarSesion,
+        usuarioAutenticado,
       }}
     >
       {props.children}
-    </AuthContext.Provider>
+    </authContext.Provider>
   );
 };
 

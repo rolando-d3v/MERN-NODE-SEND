@@ -6,7 +6,6 @@ exports.verificaToken = (req, res, next) => {
   if (authHeader) {
     const token = authHeader.split(" ")[1];
 
-    if (token) {
       try {
         const usuario = jwt.verify(token, process.env.SECRET);
         req.usuario = usuario;
@@ -14,7 +13,16 @@ exports.verificaToken = (req, res, next) => {
         console.log(error);
         console.log("JWT no valido");
       }
-    }
+    
+    // if (token) {
+    //   try {
+    //     const usuario = jwt.verify(token, process.env.SECRET);
+    //     req.usuario = usuario;
+    //   } catch (error) {
+    //     console.log(error);
+    //     console.log("JWT no valido");
+    //   }
+    // }
   }
 
   return next();

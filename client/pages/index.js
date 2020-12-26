@@ -1,29 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import LayoutBase from "../components/layout/LayoutBase";
-import useAuth from '../hooks/useAuth'
-// import { useRouter } from "next/router";
+import authContext from '../Context/auth/authContext'
 
 
 export default function Index() {
-  // const router = useRouter();
-
-
-  const {usuarioAutenticado, autenticado} = useAuth()
+  
+  const {usuarioAutenticado} = useContext(authContext)
 
   //EXTRAER SI EL USUARIO ESTA AUTENTICADO Y SET EN EL  LOCALSTORAGE
   useEffect(() => {
-    usuarioAutenticado()
+    const token = localStorage.getItem('token_x');
+    if(token) {
+      usuarioAutenticado()
+    }
   }, [])
 
 
    
-  // useEffect(() => {
-  //   if (!autenticado) {
-  //     router.push("login");
-  //   }
-  // }, [autenticado]);
-
-
   return (
     <LayoutBase>
       <div className="" >

@@ -1,24 +1,23 @@
 import { useEffect, useContext } from "react";
 import LayoutBase from "../components/layout/LayoutBase";
 import { useRouter } from "next/router";
-// import useAuth from "../hooks/useAuth";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import * as FaIcons from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import AuthContext from '../Context/auth/authContext'
+import authContext from '../Context/auth/authContext'
 
 export default function Login() {
-  const {iniciarSesion, autenticado} = useContext(AuthContext)
-  // const { iniciarSesion, autenticado } = useAuth();
+  const {iniciarSesion, autenticado} = useContext(authContext)
   const router = useRouter();
 
- 
+  //escucha los cambios de autenticafo de null a true
   useEffect(() => {
     if (autenticado) {
       router.push("/");
     }
   }, [autenticado]);
+
 
   //FORMULARIO FORMIK
   const formik = useFormik({
@@ -33,7 +32,6 @@ export default function Login() {
       password: Yup.string().required("password obligatorio"),
     }),
     onSubmit: (formData) => {
-      // console.log(formData);
       iniciarSesion(formData);
     },
   });
