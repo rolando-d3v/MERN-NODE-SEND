@@ -1,7 +1,7 @@
 import AuthState from "../Context/auth/authStates";
 import Head from "next/head";
 import "../styles/globals.css";
-import "../styles/index.css";
+import "tailwindcss/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
   return (
